@@ -25,7 +25,7 @@ class Reisgegevens
     #[ORM\Column(type: 'boolean')]
     private $heen;
 
-    #[ORM\ManyToOne(targetEntity: user::class, inversedBy: 'reisgegevens_id')]
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'reisgegevens_id')]
     #[ORM\JoinColumn(nullable: false)]
     private $werknemer_id;
 
@@ -82,12 +82,12 @@ class Reisgegevens
         return $this;
     }
 
-    public function getWerknemerId(): ?user
+    public function getWerknemerId(): ?User
     {
         return $this->werknemer_id;
     }
 
-    public function setWerknemerId(?user $werknemer_id): self
+    public function setWerknemerId(?User $werknemer_id): self
     {
         $this->werknemer_id = $werknemer_id;
 

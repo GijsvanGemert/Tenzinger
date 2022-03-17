@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<h2>Reisgegevens</h2>
+{{form(makeForm)}}
+<table class="table table-striped">
+
+    <thead>
+        <tr>				
+            <td>werknemer</td>
+            {#<<td>id</td>#}
+            <td>afstand</td>
+            <td>vervoersmiddel</td>
+            <td>datum</td>
+            <td>heen</td>
+            <td>compensatie</td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for gegevens in reisgegevens %}
+        <tr>				
+            <td>{{gegevens.werknemerId}}</td>
+            {#<td>{{gegevens.id}}</td>#}
+            <td>{{gegevens.afstand}}</td>
+            <td>{{gegevens.vervoersmiddel}}</td>
+            {% if gegevens.month is defined %}
+                <td>{{gegevens.month |date('2012-' ~ gegevens.month ~ '-01') |date('M') }}</td>
+                {% else %}
+                <td>{{gegevens.datum|date('d-m-Y')}}</td>
+                {% endif %}
+            <td>{% if gegevens.heen == 1%} Ja 
+                {% else %} Nee{% endif %}</td>
+            <td>{% if gegevens.vervoersmiddel == "fiets"%} 
+                {% if gegevens.afstand > 5 %}  {{1.00 * gegevens.afstand}} 
+                {% else %}  {{0.5 * gegevens.afstand}}
+                {% endif %}
+                {% elseif gegevens.vervoersmiddel == "bus" or gegevens.vervoersmiddel == "train"%} 
+                {{0.25 * gegevens.afstand}} 
+                {% else %}
+                {{0.1 * gegevens.afstand}} 
+                {% endif %}</td>
+             
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
