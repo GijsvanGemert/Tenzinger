@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Home{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <br><h2>Welcome to ...</h2><br>
+    <p>Are you already registered? Click here to log in:
+    <a href="{{ path('app_login') }}">Login</a></p>
+    <p>Are you new here? Click here to register:
+    <a href="{{ path('app_registration') }}">Register</a></p>
+</div>
+{% endblock %}
