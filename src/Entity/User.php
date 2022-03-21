@@ -44,9 +44,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->email;
     }
 
-    public function __toString(){
-        return (string) $this->getEmail();
-    }
 
     public function setEmail(string $email): self
     {
@@ -137,4 +134,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+    public function __toString()
+    {
+        return (string) $this->getEmail();
+    }
+
 }

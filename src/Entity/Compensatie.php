@@ -39,6 +39,7 @@ class Compensatie
         return $this;
     }
 
+
     public function getAantalKm(): ?int
     {
         return $this->aantal_km;
