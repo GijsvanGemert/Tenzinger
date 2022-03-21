@@ -67,7 +67,7 @@ class WeergaveReisgegevensController extends AbstractController
         $response->headers->set('Content-Disposition', 'attachment; filename=sample.csv');
 
         $response->sendHeaders();
-        $response->sendContent();
+        //$response->sendContent();
         return $response;
 
     // do something with the file
