@@ -17,7 +17,7 @@ class Compensatie
     private $vervoersmiddel;
 
     #[ORM\Column(type: 'integer')]
-    private $aantal_kilometer;
+    private $aantal_km;
 
     #[ORM\Column(type: 'decimal', precision: 4, scale: 2)]
     private $compensatie;
@@ -39,14 +39,15 @@ class Compensatie
         return $this;
     }
 
-    public function getAantalKilometer(): ?int
+
+    public function getAantalKm(): ?int
     {
-        return $this->aantal_kilometer;
+        return $this->aantal_km;
     }
 
-    public function setAantalKilometer(int $aantal_kilometer): self
+    public function setAantalKm(int $aantal_km): self
     {
-        $this->aantal_kilometer = $aantal_kilometer;
+        $this->aantal_km = $aantal_km;
 
         return $this;
     }

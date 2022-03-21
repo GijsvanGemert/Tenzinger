@@ -45,6 +45,7 @@ class ReisgegevensRepository extends ServiceEntityRepository
             $this->_em->flush();
         }
     }
+
     public function groupByID(){
 
         $query = $this->createQueryBuilder('q')
@@ -85,7 +86,7 @@ class ReisgegevensRepository extends ServiceEntityRepository
 
     }
 
-    
+
     // /**
     //  * @return Reisgegevens[] Returns an array of Reisgegevens objects
     //  */
