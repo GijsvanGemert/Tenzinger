@@ -11,8 +11,13 @@
             {#<<td>id</td>#}
             <td>afstand</td>
             <td>vervoersmiddel</td>
+            {% if reisgegevens[0].month is defined %}
+            <td>jaar</td>
+            <td>maand</td>
+            {% else %}
             <td>datum</td>
             <td>heen</td>
+             {% endif %}       
             <td>compensatie</td>
         </tr>
     </thead>
@@ -24,24 +29,38 @@
             <td>{{gegevens.afstand}}</td>
             <td>{{gegevens.vervoersmiddel}}</td>
             {% if gegevens.month is defined %}
+                <td>{{gegevens.year }}</td>
                 <td>{{gegevens.month |date('2012-' ~ gegevens.month ~ '-01') |date('M') }}</td>
                 {% else %}
                 <td>{{gegevens.datum|date('d-m-Y')}}</td>
-                {% endif %}
-            <td>{% if gegevens.heen == 1%} Ja 
+                <td>{% if gegevens.heen == 1%} Ja 
                 {% else %} Nee{% endif %}</td>
-            <td>{% if gegevens.vervoersmiddel == "fiets"%} 
+                {% endif %}
+            <td>
+             {% if reisgegevens[0].month is defined %}
+                {{gegevens.compensatie}}
+                {% else %} 
+                {% if gegevens.vervoersmiddel == "fiets"%} 
+                
+                
                 {% if gegevens.afstand > 5 %}  {{1.00 * gegevens.afstand}} 
                 {% else %}  {{0.5 * gegevens.afstand}}
+                
                 {% endif %}
                 {% elseif gegevens.vervoersmiddel == "bus" or gegevens.vervoersmiddel == "train"%} 
                 {{0.25 * gegevens.afstand}} 
                 {% else %}
                 {{0.1 * gegevens.afstand}} 
+                {% endif %}
                 {% endif %}</td>
              
         </tr>
         {% endfor %}
     </tbody>
 </table>
+{% if reisgegevens[0].month is defined %}
+
+{% else %}
+<a href="/tenzinger/public/index.php/weergave/groupby" class="button">group data</a> 
+ {% endif %}
 {% endblock %}

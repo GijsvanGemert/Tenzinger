@@ -9,6 +9,9 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\VarExporter\Internal\Values;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
+use Symfony\Component\Serializer\Encoder\CsvEncoder;
 
 class WeergaveReisgegevensController extends AbstractController
 {
@@ -48,5 +51,26 @@ class WeergaveReisgegevensController extends AbstractController
             'reisgegevens' => $reisgegevens,
             'makeForm'=>$form->createView()
         ]);
+    }
+    #[Route('/weergave/download', name: 'app_download_reisgegevens')]
+    public function exportcsv(ReisgegevensRepository $rg,  Request $request){
+        $records= $rg->groupByID();
+        $encoders = [new CsvEncoder()];
+        $normalizers = array(new ObjectNormalizer());
+        $serializer = new Serializer($normalizers, $encoders);
+        $records= (array) $records;
+        $csvContent = $serializer->serialize($records, 'csv');
+      
+        $response = new Response($csvContent);
+        $response->headers->set('Content-Encoding', 'UTF-8');
+        $response->headers->set('Content-Type', 'text/csv; charset=UTF-8');
+        $response->headers->set('Content-Disposition', 'attachment; filename=sample.csv');
+
+        $response->sendHeaders();
+        $response->sendContent();
+        return $response;
+
+    // do something with the file
+        
     }
 }
