@@ -52,7 +52,6 @@ class ReisgegevensRepository extends ServiceEntityRepository
             ->select(' p.email as werknemerId, q.vervoersmiddel,month(q.datum) as month,year(q.datum) as year, sum(q.afstand) as afstand,sum(q.afstand*0.1) as compensatie')
             ->leftJoin("q.werknemer_id",'p')->addSelect('p.id')
             ->groupBy('q.werknemer_id,q.vervoersmiddel, year, month')
-            ->orderBy('q.id', 'DESC')
             ->where("q.vervoersmiddel='auto'")
             ->getQuery();
 
@@ -60,7 +59,6 @@ class ReisgegevensRepository extends ServiceEntityRepository
             ->select(' p.email as werknemerId,  q.vervoersmiddel,month(q.datum) as month,year(q.datum) as year, sum(q.afstand) as afstand,sum(q.afstand*0.25) as compensatie')
             ->leftJoin("q.werknemer_id",'p')->addSelect('p.id')
             ->groupBy('q.werknemer_id,q.vervoersmiddel, year, month')
-            ->orderBy('q.id', 'DESC')
             ->where("q.vervoersmiddel!='fiets' AND q.vervoersmiddel!='auto' ")
             ->getQuery();
 
@@ -68,14 +66,12 @@ class ReisgegevensRepository extends ServiceEntityRepository
             ->select(' p.email as werknemerId,  q.vervoersmiddel,month(q.datum) as month,year(q.datum) as year, sum(q.afstand) as afstand,sum(q.afstand*1.0) as compensatie')
             ->leftJoin("q.werknemer_id",'p')->addSelect('p.id')
             ->groupBy('q.werknemer_id,q.vervoersmiddel, year, month')
-            ->orderBy('q.id', 'DESC')
             ->where("q.afstand>5 AND q.vervoersmiddel='fiets'")
             ->getQuery();
         $query4 = $this->createQueryBuilder('q')
             ->select('p.email as werknemerId,  q.vervoersmiddel,month(q.datum) as month,year(q.datum) as year, sum(q.afstand) as afstand, sum(q.afstand*0.5) as compensatie')
             ->leftJoin("q.werknemer_id",'p')->addSelect('p.id')
             ->groupBy('q.werknemer_id,q.vervoersmiddel,year, month')
-            ->orderBy('q.id', 'DESC')
             ->where("q.afstand<=5 AND q.vervoersmiddel='fiets'")
             ->getQuery();
         $result1=$query->getResult();

@@ -12,6 +12,7 @@ use Symfony\Component\VarExporter\Internal\Values;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\Encoder\CsvEncoder;
+use Doctrine\ORM\EntityManagerInterface;
 
 class WeergaveReisgegevensController extends AbstractController
 {

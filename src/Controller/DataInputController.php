@@ -10,7 +10,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/data_input', name: 'app_data_input')]
 class DataInputController extends AbstractController
 {
     #[Route('/', name: 'index')]
@@ -21,7 +20,7 @@ class DataInputController extends AbstractController
         ]);
     }
 
-    #[Route('/invoer', name: 'invoer')]
+    #[Route('/data_input', name: 'app_data_input')]
     public function invoerReisgegevens(Request $request, ManagerRegistry $doctrine): Response{
         $reisgegevens = new Reisgegevens();
         
