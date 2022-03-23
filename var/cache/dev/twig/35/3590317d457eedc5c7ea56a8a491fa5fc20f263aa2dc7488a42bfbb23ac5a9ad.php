@@ -65,23 +65,24 @@ class __TwigTemplate_d490c65880589625ae9381a591b4cb8c1c5a97d5a01c12269f595c119ac
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
         // line 6
-        echo "    ";
-        if ((isset($context["error"]) || array_key_exists("error", $context) ? $context["error"] : (function () { throw new RuntimeError('Variable "error" does not exist.', 6, $this->source); })())) {
-            // line 7
-            echo "        <div>";
-            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans(twig_get_attribute($this->env, $this->source, (isset($context["error"]) || array_key_exists("error", $context) ? $context["error"] : (function () { throw new RuntimeError('Variable "error" does not exist.', 7, $this->source); })()), "messageKey", [], "any", false, false, false, 7), twig_get_attribute($this->env, $this->source, (isset($context["error"]) || array_key_exists("error", $context) ? $context["error"] : (function () { throw new RuntimeError('Variable "error" does not exist.', 7, $this->source); })()), "messageData", [], "any", false, false, false, 7), "security"), "html", null, true);
-            echo "</div>
-    ";
-        }
-        // line 9
         echo "
     <div class=\"container\">
         <br><h2>Login</h2><br>
         <form action=\"";
-        // line 12
+        // line 9
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_login");
         echo "\" method=\"post\">
-            <label for=\"username\">Email:</label>
+            ";
+        // line 10
+        if ((isset($context["error"]) || array_key_exists("error", $context) ? $context["error"] : (function () { throw new RuntimeError('Variable "error" does not exist.', 10, $this->source); })())) {
+            // line 11
+            echo "            <div>";
+            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans(twig_get_attribute($this->env, $this->source, (isset($context["error"]) || array_key_exists("error", $context) ? $context["error"] : (function () { throw new RuntimeError('Variable "error" does not exist.', 11, $this->source); })()), "messageKey", [], "any", false, false, false, 11), twig_get_attribute($this->env, $this->source, (isset($context["error"]) || array_key_exists("error", $context) ? $context["error"] : (function () { throw new RuntimeError('Variable "error" does not exist.', 11, $this->source); })()), "messageData", [], "any", false, false, false, 11), "security"), "html", null, true);
+            echo "</div>
+            ";
+        }
+        // line 13
+        echo "            <label for=\"username\">Email:</label>
             <input type=\"text\" id=\"username\" name=\"_username\" value=\"";
         // line 14
         echo twig_escape_filter($this->env, (isset($context["last_username"]) || array_key_exists("last_username", $context) ? $context["last_username"] : (function () { throw new RuntimeError('Variable "last_username" does not exist.', 14, $this->source); })()), "html", null, true);
@@ -117,7 +118,7 @@ class __TwigTemplate_d490c65880589625ae9381a591b4cb8c1c5a97d5a01c12269f595c119ac
 
     public function getDebugInfo()
     {
-        return array (  95 => 21,  87 => 14,  82 => 12,  77 => 9,  71 => 7,  68 => 6,  58 => 5,  35 => 1,);
+        return array (  96 => 21,  88 => 14,  85 => 13,  79 => 11,  77 => 10,  73 => 9,  68 => 6,  58 => 5,  35 => 1,);
     }
 
     public function getSourceContext()
@@ -127,13 +128,13 @@ class __TwigTemplate_d490c65880589625ae9381a591b4cb8c1c5a97d5a01c12269f595c119ac
 {# ... #}
 
 {% block body %}
-    {% if error %}
-        <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
 
     <div class=\"container\">
         <br><h2>Login</h2><br>
         <form action=\"{{ path('app_login') }}\" method=\"post\">
+            {% if error %}
+            <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+            {% endif %}
             <label for=\"username\">Email:</label>
             <input type=\"text\" id=\"username\" name=\"_username\" value=\"{{ last_username }}\"/>
             <br>

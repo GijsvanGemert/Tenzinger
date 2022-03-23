@@ -73,62 +73,69 @@ class __TwigTemplate_825234d6c12fc80361606c2f7243bc958de4b9e85e1f529677faba6d8bf
             <span class=\"navbar-toggler-icon\"></span>
         </button>
 
-        <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">
+        ";
+        // line 25
+        if ($this->extensions['Symfony\Bridge\Twig\Extension\SecurityExtension']->isGranted("IS_AUTHENTICATED_FULLY")) {
+            // line 26
+            echo "        <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">
             <ul class=\"navbar-nav mr-auto\">
                 <li class=\"nav-item\">
                     <a class=\"nav-link\" href=\"";
-        // line 28
-        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_data_input");
-        echo "\">Data Input</a>
+            // line 29
+            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_data_input");
+            echo "\">Data Input</a>
                 </li>
                 <li class=\"nav-item\">
                     <a class=\"nav-link\" href=\"";
-        // line 31
-        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_weergave_reisgegevens");
-        echo "\">Overview</a>
+            // line 32
+            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_weergave_reisgegevens");
+            echo "\">Overview</a>
                 </li>
             </ul>
         </div>
-
+        ";
+        }
+        // line 37
+        echo "
         <div class=\"collapse navbar-collapse justify-content-end\" id=\"navbarSupportedContent\">
             <ul class=\"navbar-nav mr-auto\">
             ";
-        // line 38
-        if (twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 38, $this->source); })()), "user", [], "any", false, false, false, 38)) {
-            // line 39
+        // line 40
+        if (twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 40, $this->source); })()), "user", [], "any", false, false, false, 40)) {
+            // line 41
             echo "                <li class=\"nav-item\">
                     <a class=\"nav-link\" href=\"";
-            // line 40
+            // line 42
             echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_logout");
             echo "\">Logout</a>
                 </li>
             ";
         } else {
-            // line 43
+            // line 45
             echo "                <li class=\"nav-item\">
                     <a class=\"nav-link\" href=\"";
-            // line 44
+            // line 46
             echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_login");
             echo "\">Login</a>
                 </li>
                 <li class=\"nav-item\">
                     <a class=\"nav-link\" href=\"";
-            // line 47
+            // line 49
             echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_registration");
             echo "\">Registration</a>
                 </li>
             ";
         }
-        // line 50
+        // line 52
         echo "            </ul>
         </div>
     </nav>
 
     <div class=\"container\">
         ";
-        // line 55
+        // line 57
         $this->displayBlock('body', $context, $blocks);
-        // line 59
+        // line 61
         echo "    </body>
 </html>
 ";
@@ -205,7 +212,7 @@ class __TwigTemplate_825234d6c12fc80361606c2f7243bc958de4b9e85e1f529677faba6d8bf
 
     }
 
-    // line 55
+    // line 57
     public function block_body($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -215,7 +222,7 @@ class __TwigTemplate_825234d6c12fc80361606c2f7243bc958de4b9e85e1f529677faba6d8bf
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
-        // line 56
+        // line 58
         echo "        </div>
         
         ";
@@ -239,7 +246,7 @@ class __TwigTemplate_825234d6c12fc80361606c2f7243bc958de4b9e85e1f529677faba6d8bf
 
     public function getDebugInfo()
     {
-        return array (  219 => 56,  209 => 55,  196 => 14,  186 => 13,  173 => 10,  163 => 9,  144 => 5,  132 => 59,  130 => 55,  123 => 50,  117 => 47,  111 => 44,  108 => 43,  102 => 40,  99 => 39,  97 => 38,  87 => 31,  81 => 28,  67 => 16,  65 => 13,  62 => 12,  59 => 9,  53 => 5,  47 => 1,);
+        return array (  226 => 58,  216 => 57,  203 => 14,  193 => 13,  180 => 10,  170 => 9,  151 => 5,  139 => 61,  137 => 57,  130 => 52,  124 => 49,  118 => 46,  115 => 45,  109 => 42,  106 => 41,  104 => 40,  99 => 37,  91 => 32,  85 => 29,  80 => 26,  78 => 25,  67 => 16,  65 => 13,  62 => 12,  59 => 9,  53 => 5,  47 => 1,);
     }
 
     public function getSourceContext()
@@ -268,6 +275,7 @@ class __TwigTemplate_825234d6c12fc80361606c2f7243bc958de4b9e85e1f529677faba6d8bf
             <span class=\"navbar-toggler-icon\"></span>
         </button>
 
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
         <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">
             <ul class=\"navbar-nav mr-auto\">
                 <li class=\"nav-item\">
@@ -278,6 +286,7 @@ class __TwigTemplate_825234d6c12fc80361606c2f7243bc958de4b9e85e1f529677faba6d8bf
                 </li>
             </ul>
         </div>
+        {% endif %}
 
         <div class=\"collapse navbar-collapse justify-content-end\" id=\"navbarSupportedContent\">
             <ul class=\"navbar-nav mr-auto\">
