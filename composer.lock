@@ -5,7 +5,7 @@
         "This file is @generated automatically"
     ],
 
-    "content-hash": "ae9dc0ef1d7bd964a1f39356c204a694",
+    "content-hash": "6ef3eb644fe751be02d7e58acc91af33",
 
     "packages": [
         {
@@ -5784,6 +5784,7 @@
             "time": "2022-01-02T09:55:41+00:00"
         },
         {
+
             "name": "symfony/uid",
             "version": "v6.0.3",
             "source": {
