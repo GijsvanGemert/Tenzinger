@@ -4,10 +4,17 @@ namespace App\Entity;
 
 use App\Repository\ReisgegevensRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
 
 #[ORM\Entity(repositoryClass: ReisgegevensRepository::class)]
+#[UniqueEntity( fields: ['datum', 'heen','werknemer_id'],
+errorPath: 'datum',
+message: 'This date has already been used',)]
 class Reisgegevens
 {
+    
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
@@ -20,6 +27,8 @@ class Reisgegevens
     private $vervoersmiddel;
 
     #[ORM\Column(type: 'date')]
+    #[Assert\NotNull]
+    #[Assert\Type(\DateTime::class)]
     private $datum;
 
     #[ORM\Column(type: 'boolean')]

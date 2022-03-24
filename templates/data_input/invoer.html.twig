@@ -5,6 +5,8 @@
 <div class="container">
  
 {{form(reisgegevensForm)}}
-
+{% if errormsg is defined %}
+<h3>{{errormsg}}</h3>
+{% endif %}
 </div>
 {% endblock %}

@@ -10,7 +10,9 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use AppBundle\Entity\FormValidation; 
 
 class ReisgegevensType extends AbstractType
 {
@@ -38,28 +40,26 @@ class ReisgegevensType extends AbstractType
                     'Bus' => 'Bus',
                 ],
             ])
-            ->add('datum',DateType::class, array(
-                'months' => range(date('y') -1, date('y')),
+            ->add('datum',DateType::class, [
+                'months' => range(date('m', strtotime("-1 month")), date('m')),
                 'years' => range(date('y') , date('y')),
                 'required'=>'true',
                 'placeholder' => [
-                    'year' => 'Year', 'month' => 'Month', 'day' => 'Day',
+                    'year' => 'Jaar', 'month' => 'Maand', 'day' => 'Dag',
                 ],
-                // prevents rendering it as type="date", to avoid HTML5 date pickers
                 'format' => 'dd - MMMM - yyyy',
                 
                 'input'  => 'datetime',
                 
-                'input_format'=>'Y-m-d',
+                'input_format'=>'mm-dd-yyyy',
 
-             )
+            ]
              )
             ->add('heen')
-            ->add('werknemer_id', ChoiceType::class, [
-                'choices'  => [
-                    strval($user)=>$user
-                ],
-            ])
+            // ->add('werknemer_id', HiddenType::class, [
+
+            //     'empty_data' =>$user
+            // ])
             ->add('Opslaan', SubmitType::class)
         ;
     }
