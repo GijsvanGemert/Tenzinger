@@ -324,9 +324,11 @@
             "./templates/base.html.twig"
         ]
     },
+
     "symfony/uid": {
         "version": "v6.0.3"
     },
+
     "symfony/validator": {
         "version": "6.0",
         "recipe": {
@@ -336,7 +338,8 @@
             "ref": "c32cfd98f714894c4f128bb99aa2530c1227603c"
         },
         "files": [
-            "config/packages/validator.yaml"
+            "./config/packages/validator.yaml"
+
         ]
     },
     "symfony/var-dumper": {
