@@ -46,6 +46,44 @@ class ReisgegevensRepository extends ServiceEntityRepository
         }
     }
 
+    public function groupByVervoersmiddel($id){
+
+        $query = $this->createQueryBuilder('q')
+            ->select(' p.email as werknemerId, q.vervoersmiddel, month(q.datum) as month, year(q.datum) as year, sum(q.afstand) as afstand, sum(q.afstand*0.1) as compensatie')
+            ->leftJoin("q.werknemer_id",'p')->addSelect('p.id')
+            ->groupBy('q.vervoersmiddel, year, month')
+            ->where("q.vervoersmiddel='auto' AND q.werknemer_id=$id ")
+            ->getQuery();
+
+        $query2 = $this->createQueryBuilder('q')
+            ->select(' p.email as werknemerId, q.vervoersmiddel, month(q.datum) as month, year(q.datum) as year, sum(q.afstand) as afstand,sum(q.afstand*0.25) as compensatie')
+            ->leftJoin("q.werknemer_id",'p')->addSelect('p.id')
+            ->groupBy('q.vervoersmiddel, year, month')
+            ->where("q.vervoersmiddel!='fiets' AND q.vervoersmiddel!='auto' AND q.werknemer_id=$id ")
+            ->getQuery();
+
+        $query3 = $this->createQueryBuilder('q')
+            ->select(' p.email as werknemerId,  q.vervoersmiddel,month(q.datum) as month,year(q.datum) as year, sum(q.afstand) as afstand,sum(q.afstand*1.0) as compensatie')
+            ->leftJoin("q.werknemer_id",'p')->addSelect('p.id')
+            ->groupBy('q.vervoersmiddel, year, month')
+            ->where("q.afstand>5 AND q.vervoersmiddel='fiets' AND q.werknemer_id=$id ")
+            ->getQuery();
+        $query4 = $this->createQueryBuilder('q')
+            ->select('p.email as werknemerId,  q.vervoersmiddel,month(q.datum) as month,year(q.datum) as year, sum(q.afstand) as afstand, sum(q.afstand*0.5) as compensatie')
+            ->leftJoin("q.werknemer_id",'p')->addSelect('p.id')
+            ->groupBy('q.vervoersmiddel, year, month')
+            ->where("q.afstand<=5 AND q.vervoersmiddel='fiets' AND q.werknemer_id=$id ")
+            ->getQuery();
+        $result1=$query->getResult();
+        $result2=$query2->getResult();
+        $result3=$query3->getResult();
+        $result4=$query4->getResult();
+    return array_merge($result1, $result2, $result3, $result4);
+
+    }
+
+
+    /*
     public function groupByID(){
 
         $query = $this->createQueryBuilder('q')
@@ -81,6 +119,8 @@ class ReisgegevensRepository extends ServiceEntityRepository
     return array_merge($result1,$result2,$result3,$result4);
 
     }
+*/
+
 
 
     // /**
