@@ -55,7 +55,13 @@ class ReisgegevensType extends AbstractType
 
             ]
              )
-            ->add('heen')
+            ->add('heen', ChoiceType::class, [
+                'choices'  => [
+                    'Heen' => true,
+                    'Terug' => false,
+                ],
+                'label'=>"Reisrichting"
+            ])
             // ->add('werknemer_id', HiddenType::class, [
 
             //     'empty_data' =>$user
