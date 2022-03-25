@@ -53,7 +53,7 @@ class DataInputController extends AbstractController
                 $em = $doctrine->getManager();
                 $em->persist($reisgegevens);
                 $em->flush();
-                $this->session->getFlashBag()->add('success', 'user.logout');
+                $this->addflash('success','De rijsgegevens zijn toegevoegd.');
                 return $this->redirect($this->generateUrl('app_weergave_reisgegevens'));
                 //return new Response('Uw reisgegevens zijn opgeslagen!');
             }

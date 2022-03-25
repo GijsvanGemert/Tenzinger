@@ -289,3 +289,17 @@ bdd266,::1,GET,http://localhost/tenzinger/public/index.php/weergave,1648212397,,
 8c8750,::1,GET,http://localhost/tenzinger/public/index.php/data_input,1648212556,,200
 c03fd9,::1,GET,http://localhost/tenzinger/public/index.php/data_input,1648212567,21be57,500
 21be57,::1,POST,http://localhost/tenzinger/public/index.php/data_input,1648212567,,500
+4dd0d0,::1,GET,http://localhost/tenzinger/public/index.php/data_input,1648213286,,200
+eac35e,::1,POST,http://localhost/tenzinger/public/index.php/data_input,1648213296,,302
+ca6266,::1,GET,http://localhost/tenzinger/public/index.php/weergave,1648213296,0421a1,500
+0421a1,::1,GET,http://localhost/tenzinger/public/index.php/weergave,1648213296,,500
+fa2b21,::1,GET,http://localhost/tenzinger/public/index.php/weergave,1648213360,,200
+90a2b9,::1,GET,http://localhost/tenzinger/public/index.php/weergave,1648213370,,200
+151562,::1,GET,http://localhost/tenzinger/public/index.php/data_input,1648213372,,200
+8f9e18,::1,POST,http://localhost/tenzinger/public/index.php/data_input,1648213381,,200
+6a7dd6,::1,POST,http://localhost/tenzinger/public/index.php/data_input,1648213385,,302
+91af3c,::1,GET,http://localhost/tenzinger/public/index.php/weergave,1648213385,,200
+e2344e,::1,GET,http://localhost/tenzinger/public/index.php/weergave,1648213393,,200
+af7a00,::1,GET,http://localhost/tenzinger/public/index.php/data_input,1648213395,,200
+853523,::1,POST,http://localhost/tenzinger/public/index.php/data_input,1648213403,,302
+7b255f,::1,GET,http://localhost/tenzinger/public/index.php/weergave,1648213404,,200
