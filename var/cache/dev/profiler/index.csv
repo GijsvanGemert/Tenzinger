@@ -303,3 +303,13 @@ e2344e,::1,GET,http://localhost/tenzinger/public/index.php/weergave,1648213393,,
 af7a00,::1,GET,http://localhost/tenzinger/public/index.php/data_input,1648213395,,200
 853523,::1,POST,http://localhost/tenzinger/public/index.php/data_input,1648213403,,302
 7b255f,::1,GET,http://localhost/tenzinger/public/index.php/weergave,1648213404,,200
+592f2e,::1,GET,http://localhost/tenzinger/public/index.php/admin,1648214751,,302
+349c21,::1,GET,http://localhost/tenzinger/public/index.php/admin?crudAction=index&crudControllerFqcn=App%5CController%5CAdmin%5CUserCrudController&signature=QpwplG9y3ET3-GTVaO0tpev4QedRARZ939bpuTdFezs,1648214752,,200
+42d705,::1,GET,http://localhost/tenzinger/public/index.php/admin?crudAction=index&crudControllerFqcn=App%5CController%5CAdmin%5CReisgegevensCrudController&menuIndex=4&signature=_zHjJq2yJsgLH3BAUdMLxoW8jIn-M1Qu7gQ7Zhg49ow&submenuIndex=-1,1648214754,05a2f1,500
+05a2f1,::1,GET,http://localhost/tenzinger/public/index.php/admin?crudAction=index&crudControllerFqcn=App%5CController%5CAdmin%5CReisgegevensCrudController&menuIndex=4&signature=_zHjJq2yJsgLH3BAUdMLxoW8jIn-M1Qu7gQ7Zhg49ow&submenuIndex=-1,1648214754,,500
+4c97c0,::1,GET,http://localhost/tenzinger/public/index.php/weergave,1648419744,,302
+41985d,::1,GET,http://localhost/tenzinger/public/index.php/,1648419745,,200
+64280b,::1,GET,http://localhost/tenzinger/public/index.php/,1648420171,,200
+f920be,::1,GET,http://localhost/tenzinger/public/index.php/,1648420174,,200
+e4c490,::1,GET,http://localhost/tenzinger/public/index.php/,1648420217,,200
+cbb6a9,::1,GET,http://localhost/tenzinger/public/index.php/,1648420289,,200
