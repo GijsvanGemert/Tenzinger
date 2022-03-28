@@ -324,6 +324,8 @@
       <tag name="ea.crud_controller"/>
       <tag name="controller.service_arguments"/>
       <tag name="container.service_subscriber"/>
+      <argument type="service" id="security.user_password_hasher"/>
+      <argument type="service" id="EasyCorp\Bundle\EasyAdminBundle\Provider\AdminContextProvider"/>
       <call method="setContainer">
         <argument type="service" id=".service_locator.wcyNGhy.App\Controller\Admin\UserCrudController"/>
       </call>
@@ -5898,7 +5900,7 @@
         <argument key="rg" type="service_closure" id="App\Repository\ReisgegevensRepository"/>
       </argument>
     </service>
-    <service id=".service_locator.VJsYvX0" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.cft_nNx" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Controller\Admin\CompensatieCrudController::autocomplete" type="service_closure" id=".service_locator.ZOQ9v2d"/>
@@ -6490,12 +6492,12 @@
       <argument type="service" id="EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator"/>
     </service>
     <service id="debug.argument_resolver.service.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
-      <argument type="service" id=".service_locator.VJsYvX0"/>
+      <argument type="service" id=".service_locator.cft_nNx"/>
     </service>
     <service id="debug.argument_resolver.default.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver"/>
     <service id="debug.argument_resolver.variadic.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver"/>
     <service id="debug.argument_resolver.not_tagged_controller.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
-      <argument type="service" id=".service_locator.VJsYvX0"/>
+      <argument type="service" id=".service_locator.cft_nNx"/>
     </service>
     <service id=".doctrine.orm.default_metadata_driver.inner" class="Doctrine\Persistence\Mapping\Driver\MappingDriverChain">
       <call method="addDriver">
@@ -7322,7 +7324,7 @@
     <service id="Symfony\Component\Security\Core\User\UserCheckerInterface" alias="security.user_checker"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.gSv9zYw" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.VJsYvX0"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.cft_nNx"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="doctrine.id_generator_locator" alias=".service_locator.KLVvNIq"/>
     <service id="Psr\Log\LoggerInterface" alias="logger"/>
@@ -7332,7 +7334,7 @@
     <service id=".service_locator.rAlqQ78" alias=".service_locator.3on9uHL"/>
     <service id=".service_locator.tbo4Jjv" alias=".service_locator.bgO__Zr"/>
     <service id=".service_locator.59vGVoM" alias=".service_locator.SJsOE7m"/>
-    <service id=".service_locator.OO.dIkV" alias=".service_locator.VJsYvX0"/>
+    <service id=".service_locator.OO.dIkV" alias=".service_locator.cft_nNx"/>
     <service id=".service_locator.wKF4yn1" alias=".service_locator.19_mNxd"/>
     <service id=".service_locator.qcCySfO" alias=".service_locator.OByxe51"/>
     <service id=".service_locator.qBCHs1a" alias=".service_locator.QXcJQkF"/>
