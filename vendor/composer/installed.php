@@ -5,7 +5,9 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
+
         'reference' => 'ebb79eb3bb11c9dd31fd3321daa93b7c45d52ded',
+
         'name' => '__root__',
         'dev' => true,
     ),
@@ -16,7 +18,9 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
+
             'reference' => 'ebb79eb3bb11c9dd31fd3321daa93b7c45d52ded',
+
             'dev_requirement' => false,
         ),
         'beberlei/doctrineextensions' => array(
@@ -65,12 +69,12 @@
             'dev_requirement' => false,
         ),
         'doctrine/dbal' => array(
-            'pretty_version' => '3.3.3',
-            'version' => '3.3.3.0',
+            'pretty_version' => '3.3.4',
+            'version' => '3.3.4.0',
             'type' => 'library',
             'install_path' => __DIR__ . '/../doctrine/dbal',
             'aliases' => array(),
-            'reference' => '82331b861727c15b1f457ef05a8729e508e7ead5',
+            'reference' => '83f779beaea1893c0bece093ab2104c6d15a7f26',
             'dev_requirement' => false,
         ),
         'doctrine/deprecations' => array(
@@ -818,12 +822,12 @@
             'dev_requirement' => false,
         ),
         'twig/twig' => array(
-            'pretty_version' => 'v3.3.8',
-            'version' => '3.3.8.0',
+            'pretty_version' => 'v3.3.9',
+            'version' => '3.3.9.0',
             'type' => 'library',
             'install_path' => __DIR__ . '/../twig/twig',
             'aliases' => array(),
-            'reference' => '972d8604a92b7054828b539f2febb0211dd5945c',
+            'reference' => '6ff9b0e440fa66f97f207e181c41340ddfa5683d',
             'dev_requirement' => false,
         ),
     ),
