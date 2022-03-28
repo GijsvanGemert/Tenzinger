@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\ReisgegevensRepository;
 use App\Entity\Reisgegevens;
 use App\Form\ReisgegevensType;
 use Doctrine\Persistence\ManagerRegistry;
@@ -22,10 +23,13 @@ class DataInputController extends AbstractController
     }
 
     #[Route('/', name: 'index')]
-    public function index(): Response
+    public function index(ReisgegevensRepository $rg): Response
     {
+
+        $reisgegevens = $rg->MaxDistanceBiked(intval(date("m",strtotime("-1 month"))),intval(date("Y",strtotime("-1 month"))));
         return $this->render('data_input/index.html.twig', [
             'controller_name' => 'DataInputController',
+            'reisgegevens' => $reisgegevens
         ]);
     }
 
