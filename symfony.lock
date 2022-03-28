@@ -359,7 +359,6 @@
         "files": [
             "./config/packages/web_profiler.yaml",
             "./config/routes/web_profiler.yaml"
-        ]
     },
     "symfony/yaml": {
         "version": "v6.0.3"
