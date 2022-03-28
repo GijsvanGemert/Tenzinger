@@ -3,6 +3,9 @@
 namespace App\Controller\Admin;
 
 use App\Entity\User;
+use App\Repository\UserRepository;
+use App\Repository\ReisgegevensRepository;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\Field;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
@@ -16,7 +19,6 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use Symfony\Component\Serializer\Encoder\CsvEncoder;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -24,28 +26,29 @@ use EasyCorp\Bundle\EasyAdminBundle\Factory\FilterFactory;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Doctrine\ORM\EntityManagerInterface;
+use EasyCorp\Bundle\EasyAdminBundle\Config\KeyValueStore;
+use EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext;
+use EasyCorp\Bundle\EasyAdminBundle\Dto\EntityDto;
+use EasyCorp\Bundle\EasyAdminBundle\Field\FormField;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
+
 
 
 class UserCrudController extends AbstractCrudController
 {
-    private $_userPasswordHasher;
-    private $_adminContextProvider;
 
-    public function __construct(UserPasswordHasherInterface $userPasswordHasher, AdminContextProvider $adminContextProvider)
+    public function __construct()
     {
-        $this->_userPasswordHasher = $userPasswordHasher;
-        $this->_adminContextProvider = $adminContextProvider;
+
     }
+
 
     public static function getEntityFqcn(): string
     {
         return User::class;
-    }
-
-    public function configureFields(string $pageName): iterable
-    {
-        yield IdField::new('id');
-        yield EmailField::new('email');
     }
 
     public function configureFilters(Filters $filters): Filters
@@ -55,19 +58,62 @@ class UserCrudController extends AbstractCrudController
             ->add('email');
     }
 
+    /*
+    public function updateEntity(EntityManagerInterface $entityManager, $entityInstance): void
+    {
+        $this->updatePassword($entityInstance);
+        parent::updateEntity($entityManager, $entityInstance);
+    }
 
-    # TEST TEST TEST
+    public function persistEntity(EntityManagerInterface $entityManager, $entityInstance): void
+    {
+        $this->updatePassword($entityInstance);
+        parent::persistEntity($entityManager, $entityInstance);
+    }
+    */
+
+    /*
+    private function updatePassword(User $user): void
+    {
+        if ($user->getPlainPassword() == '') return;
+        $this->UserRepository->setNewPassword($user, $user->getPlainPassword());
+    }
+    */
+
     public function configureActions(Actions $actions): Actions
     {
-        $export = Action::new('exportAction', 'actions.export')
+        $export = Action::new('exportcsv3', 'Export')
             ->setIcon('fa fa-download')
-            ->linkToCrudAction('exportAction')
+            ->linkToCrudAction('exportcsv3')
             ->setCssClass('btn')
             ->createAsGlobalAction();
 
         return $actions->add(Crud::PAGE_INDEX, $export);
     }
 
+    # DEZE FUNCTIE AANPASSEN
+    public function exportcsv3(ReisgegevensRepository $rg,  Request $request){
+        $user = $this->getUser();
+        $userId=$user->getId();
+        $records= $rg->groupByVervoersmiddel($userId);
+        $encoders = [new CsvEncoder()];
+        $normalizers = array(new ObjectNormalizer());
+        $serializer = new Serializer($normalizers, $encoders);
+        $records= (array) $records;
+        $csvContent = $serializer->serialize($records, 'csv');
+      
+        $response = new Response($csvContent);
+        $response->headers->set('Content-Encoding', 'UTF-8');
+        $response->headers->set('Content-Type', 'text/csv; charset=UTF-8');
+        $response->headers->set('Content-Disposition', 'attachment; filename=sample.csv');
+
+        $response->sendHeaders();
+        //$response->sendContent();
+        return $response;
+
+    }
+
+    /*
     public function exportAction(Request $request): Response
     {
         $context = $this->_adminContextProvider->getContext();
@@ -84,7 +130,8 @@ class UserCrudController extends AbstractCrudController
         $data = [];
         /**
          * @var $record User
-         */
+        */
+        /*
         foreach ($result as $record) {
             $data[] = [
                 'email' => $record->getEmail(),
@@ -101,5 +148,6 @@ class UserCrudController extends AbstractCrudController
 
         return $response;
     }
+    */
 
 }

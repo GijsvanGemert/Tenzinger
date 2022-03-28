@@ -82,6 +82,17 @@ class ReisgegevensRepository extends ServiceEntityRepository
 
     }
 
+    public function FindAll2(){
+
+        $query = $this->createQueryBuilder('q')
+
+            ->select(' p.email as email, q.vervoersmiddel, month(q.datum) as month, year(q.datum) as year, q.afstand as afstand, q.afstand*0.1 as compensatie')
+            ->leftJoin("q.werknemer_id",'p')
+            ->getQuery();
+
+        return $query->getResult();
+
+    }
 
     /*
     public function groupByID(){
