@@ -5,7 +5,9 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '922d3a1c45aeb7e13188c59c0b3b462c18fcaee4',
+
+        'reference' => 'ebb79eb3bb11c9dd31fd3321daa93b7c45d52ded',
+
         'name' => '__root__',
         'dev' => true,
     ),
@@ -16,7 +18,9 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '922d3a1c45aeb7e13188c59c0b3b462c18fcaee4',
+
+            'reference' => 'ebb79eb3bb11c9dd31fd3321daa93b7c45d52ded',
+
             'dev_requirement' => false,
         ),
         'beberlei/doctrineextensions' => array(

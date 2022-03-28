@@ -90,4 +90,15 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         ;
     }
     */
+
+    /*
+    public function setNewPassword(PasswordAuthenticatedUserInterface $user, string $plainPassword): void
+    {
+
+        $hashedPassword = $this->hasher->hashPassword($user, $plainPassword);
+        $user->setPassword($hashedPassword);
+        $this->_em->persist($user);
+        $this->_em->flush();
+    }
+    */
 }
