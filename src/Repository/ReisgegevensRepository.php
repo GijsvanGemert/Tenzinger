@@ -45,6 +45,17 @@ class ReisgegevensRepository extends ServiceEntityRepository
             $this->_em->flush();
         }
     }
+    public function MaxDistanceBiked($dateNumber,$year){
+        $query = $this->createQueryBuilder('q')
+            ->select(' month(q.datum) as month, year(q.datum) as year, sum(q.afstand) as afstand')
+            ->groupBy('q.vervoersmiddel, year, month')
+            ->where("q.vervoersmiddel='fiets' AND month(q.datum)  = $dateNumber AND year(q.datum) = $year")
+            ->orderBy("afstand")
+            ->setMaxResults(1)
+            ->getQuery();
+        return $query->getResult();
+    }
+
 
     public function groupByVervoersmiddel($id){
 
@@ -141,6 +152,17 @@ class ReisgegevensRepository extends ServiceEntityRepository
         return $result;
     }
 
+    public function FindAll2(){
+
+        $query = $this->createQueryBuilder('q')
+
+            ->select(' p.email as email, q.vervoersmiddel, month(q.datum) as month, year(q.datum) as year, q.afstand as afstand, q.afstand*0.1 as compensatie')
+            ->leftJoin("q.werknemer_id",'p')
+            ->getQuery();
+
+        return $query->getResult();
+
+    }
 
 
 
