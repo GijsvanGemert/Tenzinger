@@ -12,7 +12,7 @@
       <div class="jumbotron">
         <div class="container">
           <h1 class="display-3">Welkom</h1>
-          <p>Doormiddel van deze handige app kun je nu je reistijden gemakkelijk declareren.</p>
+          <p>Doormiddel van deze handige app kun je nu je reiskosten gemakkelijk declareren.</p>
           <p><a class="btn btn-primary btn-lg" href="#" role="button">Meer info »</a></p>
         </div>
       </div>
@@ -23,13 +23,13 @@
           <div class="col-md-4">
             <h2>Maandelijkse winnaar</h2>
              {% for gegevens in reisgegevens %}
-             <p>In de maand {{gegevens.month |date('2012-' ~ gegevens.month) |date('F') }} van {{gegevens.year}} heeft iemand in totaal {{gegevens.afstand}} Kilometer gefietst!</p>
+             <p>In de maand {{gegevens.month |date('2012-' ~ gegevens.month) |date('F') }} van {{gegevens.year}} heeft iemand in totaal {{gegevens.afstand}} kilometer gefietst!</p>
              {% endfor %}
             <p><a class="btn btn-secondary" href="#" role="button">View details »</a></p>
           </div>
           <div class="col-md-4">
-            <h2>Heading</h2>
-            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+            <h2>Totaal afgelegde afstand</h2>
+            <p>Afgelopen maand zijn er in totaal door alle werknemers {{reisgegevens2[0].afstand}} kilometers afgelegd om naar werk te reizen. </p>
             <p><a class="btn btn-secondary" href="#" role="button">View details »</a></p>
           </div>
           <div class="col-md-4">
