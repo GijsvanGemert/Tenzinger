@@ -12,18 +12,18 @@
 
     <thead>
         <tr>				
-            <td>werknemer</td>
+            <td>Werknemer</td>
             {#<<td>id</td>#}
-            <td>afstand</td>
-            <td>vervoersmiddel</td>
+            <td>Afstand</td>
+            <td>Vervoersmiddel</td>
             {% if reisgegevens[0].month is defined %}
-            <td>jaar</td>
-            <td>maand</td>
+            <td>Jaar</td>
+            <td>Maand</td>
             {% else %}
-            <td>datum</td>
-            <td>heen</td>
+            <td>Datum</td>
+            <td>Heen</td>
              {% endif %}       
-            <td>compensatie</td>
+            <td>Compensatie</td>
         </tr>
     </thead>
     <tbody>
@@ -45,14 +45,14 @@
              {% if reisgegevens[0].month is defined %}
                 {{gegevens.compensatie}}
                 {% else %} 
-                {% if gegevens.vervoersmiddel == "fiets"%} 
+                {% if gegevens.vervoersmiddel == "Fiets"%} 
                 
                 
                 {% if gegevens.afstand > 5 %}  {{1.00 * gegevens.afstand}} 
                 {% else %}  {{0.5 * gegevens.afstand}}
                 
                 {% endif %}
-                {% elseif gegevens.vervoersmiddel == "bus" or gegevens.vervoersmiddel == "trein"%} 
+                {% elseif gegevens.vervoersmiddel == "Bus" or gegevens.vervoersmiddel == "Trein"%} 
                 {{0.25 * gegevens.afstand}} 
                 {% else %}
                 {{0.1 * gegevens.afstand}} 

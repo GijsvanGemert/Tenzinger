@@ -13,7 +13,6 @@ if (\class_exists(\ContainerOC90seh\App_KernelDevDebugContainer::class, false)) 
 }
 
 if (!\class_exists(App_KernelDevDebugContainer::class, false)) {
-
     \class_alias(\ContainerVHJgJOH\App_KernelDevDebugContainer::class, App_KernelDevDebugContainer::class, false);
 }
 

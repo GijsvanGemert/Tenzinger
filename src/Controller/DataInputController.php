@@ -27,11 +27,14 @@ class DataInputController extends AbstractController
     {
 
         $reisgegevens = $rg->MaxDistanceBiked(intval(date("m",strtotime("-1 month"))),intval(date("Y",strtotime("-1 month"))));
+        $reisgegevens2 = $rg->TotalDistance(intval(date("m",strtotime("-1 month"))),intval(date("Y",strtotime("-1 month"))));
         return $this->render('data_input/index.html.twig', [
             'controller_name' => 'DataInputController',
-            'reisgegevens' => $reisgegevens
+            'reisgegevens' => $reisgegevens,
+            'reisgegevens2' => $reisgegevens2,
         ]);
     }
+
 
     #[Route('/data_input', name: 'app_data_input')]
     public function invoerReisgegevens(Request $request, ManagerRegistry $doctrine, ValidatorInterface $validator): Response{

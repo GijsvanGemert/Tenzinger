@@ -49,9 +49,19 @@ class ReisgegevensRepository extends ServiceEntityRepository
         $query = $this->createQueryBuilder('q')
             ->select(' month(q.datum) as month, year(q.datum) as year, sum(q.afstand) as afstand')
             ->groupBy('q.vervoersmiddel, year, month')
-            ->where("q.vervoersmiddel='fiets' AND month(q.datum)  = $dateNumber AND year(q.datum) = $year")
+            ->where("q.vervoersmiddel='Fiets' AND month(q.datum)  = $dateNumber AND year(q.datum) = $year")
             ->orderBy("afstand")
             ->setMaxResults(1)
+            ->getQuery();
+        return $query->getResult();
+    }
+
+
+    public function TotalDistance($dateNumber, $year){
+        $query = $this->createQueryBuilder('q')
+            ->select(' month(q.datum) as month, year(q.datum) as year, sum(q.afstand) as afstand')
+            ->groupBy('year, month')
+            ->where("month(q.datum) = $dateNumber AND year(q.datum) = $year")
             ->getQuery();
         return $query->getResult();
     }
@@ -60,31 +70,55 @@ class ReisgegevensRepository extends ServiceEntityRepository
     public function groupByVervoersmiddel($id){
 
         $query = $this->createQueryBuilder('q')
-            ->select(' p.email as werknemerId, q.vervoersmiddel, month(q.datum) as month, year(q.datum) as year, sum(q.afstand) as afstand, sum(q.afstand*0.1) as compensatie')
+            ->select(' p.email as werknemerId, q.vervoersmiddel, month(q.datum) as month, 
+            year(q.datum) as year, sum(q.afstand) as afstand, sum(q.afstand*0.1) as compensatie')
             ->leftJoin("q.werknemer_id",'p')->addSelect('p.id')
-            ->groupBy('q.vervoersmiddel, year, month')
-            ->where("q.vervoersmiddel='auto' AND q.werknemer_id=$id ")
+            //->groupBy('q.vervoersmiddel, year, month')
+            ->groupBy('q.vervoersmiddel')
+            ->addGroupBy('year')
+            ->OrderBy('year', 'DESC')
+            ->addGroupBy('month')
+            ->addOrderBy('month', 'DESC')
+            ->where("q.vervoersmiddel='Auto' AND q.werknemer_id=$id ")
             ->getQuery();
 
         $query2 = $this->createQueryBuilder('q')
-            ->select(' p.email as werknemerId, q.vervoersmiddel, month(q.datum) as month, year(q.datum) as year, sum(q.afstand) as afstand,sum(q.afstand*0.25) as compensatie')
+            ->select(' p.email as werknemerId, q.vervoersmiddel, month(q.datum) as month, 
+            year(q.datum) as year, sum(q.afstand) as afstand,sum(q.afstand*0.25) as compensatie')
             ->leftJoin("q.werknemer_id",'p')->addSelect('p.id')
-            ->groupBy('q.vervoersmiddel, year, month')
-            ->where("q.vervoersmiddel!='fiets' AND q.vervoersmiddel!='auto' AND q.werknemer_id=$id ")
+            //->groupBy('q.vervoersmiddel, year, month')
+            ->groupBy('q.vervoersmiddel')
+            ->addGroupBy('year')
+            ->OrderBy('year', 'DESC')
+            ->addGroupBy('month')
+            ->addOrderBy('month', 'DESC')
+            ->where("q.vervoersmiddel!='Fiets' AND q.vervoersmiddel!='Auto' AND q.werknemer_id=$id ")
             ->getQuery();
 
         $query3 = $this->createQueryBuilder('q')
-            ->select(' p.email as werknemerId,  q.vervoersmiddel,month(q.datum) as month,year(q.datum) as year, sum(q.afstand) as afstand,sum(q.afstand*1.0) as compensatie')
+            ->select(' p.email as werknemerId, q.vervoersmiddel, month(q.datum) as month,
+            year(q.datum) as year, sum(q.afstand) as afstand,sum(q.afstand*1.0) as compensatie')
             ->leftJoin("q.werknemer_id",'p')->addSelect('p.id')
-            ->groupBy('q.vervoersmiddel, year, month')
-            ->where("q.afstand>5 AND q.vervoersmiddel='fiets' AND q.werknemer_id=$id ")
+            //->groupBy('q.vervoersmiddel, year, month')
+            ->groupBy('q.vervoersmiddel')
+            ->addGroupBy('year')
+            ->OrderBy('year', 'DESC')
+            ->addGroupBy('month')
+            ->addOrderBy('month', 'DESC')
+            ->where("q.afstand>5 AND q.vervoersmiddel='Fiets' AND q.werknemer_id=$id ")
             ->getQuery();
 
         $query4 = $this->createQueryBuilder('q')
-            ->select('p.email as werknemerId,  q.vervoersmiddel,month(q.datum) as month,year(q.datum) as year, sum(q.afstand) as afstand, sum(q.afstand*0.5) as compensatie')
+            ->select('p.email as werknemerId, q.vervoersmiddel, month(q.datum) as month,
+            year(q.datum) as year, sum(q.afstand) as afstand, sum(q.afstand*0.5) as compensatie')
             ->leftJoin("q.werknemer_id",'p')->addSelect('p.id')
-            ->groupBy('q.vervoersmiddel, year, month')
-            ->where("q.afstand<=5 AND q.vervoersmiddel='fiets' AND q.werknemer_id=$id ")
+            //->groupBy('q.vervoersmiddel, year, month')
+            ->groupBy('q.vervoersmiddel')
+            ->addGroupBy('year')
+            ->OrderBy('year', 'DESC')
+            ->addGroupBy('month')
+            ->addOrderBy('month', 'DESC')
+            ->where("q.afstand<=5 AND q.vervoersmiddel='Fiets' AND q.werknemer_id=$id ")
             ->getQuery();
 
         $result1=$query->getResult();
@@ -104,8 +138,8 @@ class ReisgegevensRepository extends ServiceEntityRepository
         $query = $this->createQueryBuilder('q')
         ->select(" p.email as werknemerId, q.vervoersmiddel, month(q.datum) as month, 
         year(q.datum) as year, sum(q.afstand) as afstand,
-        sum(case when q.vervoersmiddel='auto' then (q.afstand*0.1)
-        when q.vervoersmiddel!='fiets' AND q.vervoersmiddel!='auto' then (q.afstand*0.25)
+        sum(case when q.vervoersmiddel='Auto' then (q.afstand*0.1)
+        when q.vervoersmiddel!='Fiets' AND q.vervoersmiddel!='auto' then (q.afstand*0.25)
         when q.afstand>5 AND q.vervoersmiddel='fiets' then (q.afstand*1.0)
         when q.afstand<=5 AND q.vervoersmiddel='fiets' then (q.afstand*0.5)
         else 0 end)
@@ -132,10 +166,10 @@ class ReisgegevensRepository extends ServiceEntityRepository
         $query = $this->createQueryBuilder('q')
         ->select(" p.email as werknemerId, q.vervoersmiddel, month(q.datum) as month, 
         year(q.datum) as year, sum(q.afstand) as afstand,
-        sum(case when q.vervoersmiddel='auto' then (q.afstand*0.1)
-        when q.vervoersmiddel!='fiets' AND q.vervoersmiddel!='auto' then (q.afstand*0.25)
-        when q.afstand>5 AND q.vervoersmiddel='fiets' then (q.afstand*1.0)
-        when q.afstand<=5 AND q.vervoersmiddel='fiets' then (q.afstand*0.5)
+        sum(case when q.vervoersmiddel='Auto' then (q.afstand*0.1)
+        when q.vervoersmiddel!='Fiets' AND q.vervoersmiddel!='Auto' then (q.afstand*0.25)
+        when q.afstand>5 AND q.vervoersmiddel='Fiets' then (q.afstand*1.0)
+        when q.afstand<=5 AND q.vervoersmiddel='Fiets' then (q.afstand*0.5)
         else 0 end)
         as compensatie")
         ->leftJoin("q.werknemer_id",'p')->addSelect('p.id')
