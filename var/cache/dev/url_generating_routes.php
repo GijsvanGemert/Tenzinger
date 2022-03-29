@@ -24,6 +24,7 @@ return [
     'app_registration' => [[], ['_controller' => 'App\\Controller\\RegistrationController::reg'], [], [['text', '/registration']], [], [], []],
     'app_weergave_reisgegevens' => [[], ['_controller' => 'App\\Controller\\WeergaveReisgegevensController::index'], [], [['text', '/weergave']], [], [], []],
     'app_weergave_reisgegevens_groupby' => [[], ['_controller' => 'App\\Controller\\WeergaveReisgegevensController::groupbyid'], [], [['text', '/weergave/groupby']], [], [], []],
+    'app_weergave_reisgegevens_groupby2' => [[], ['_controller' => 'App\\Controller\\WeergaveReisgegevensController::groupbyid2'], [], [['text', '/weergave/groupby2']], [], [], []],
     'app_download_reisgegevens' => [[], ['_controller' => 'App\\Controller\\WeergaveReisgegevensController::exportcsv'], [], [['text', '/weergave/download']], [], [], []],
     'app_welcome' => [[], ['_controller' => 'App\\Controller\\WelcomeController::index'], [], [['text', '/welcome']], [], [], []],
 ];

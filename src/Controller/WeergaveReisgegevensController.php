@@ -66,7 +66,6 @@ class WeergaveReisgegevensController extends AbstractController
     }
 
     */
-    
     #[Route('/weergave/groupby', name: 'app_weergave_reisgegevens_groupby')]
     public function groupbyid(ReisgegevensRepository $rg,  Request $request): Response
     {
@@ -77,6 +76,59 @@ class WeergaveReisgegevensController extends AbstractController
         $form->handleRequest($request);
         return $this->render('weergave_reisgegevens/index.html.twig', [
             'reisgegevens' => $reisgegevens,
+            'makeForm'=>$form->createView()
+        ]);
+    }
+    #[Route('/weergave/groupby2', name: 'app_weergave_reisgegevens_groupby2')]
+    public function groupbyid2(ReisgegevensRepository $rg,  Request $request): Response
+    {
+        $reisgegevens = $rg->groupByID();
+        $tempmonth="";
+        $tempyear="";
+        $tempvervoersmiddel="";
+        $tempArray=array();
+        $counter=0;
+        array_multisort(array_column($reisgegevens, 'werknemerId'), SORT_DESC,
+            array_column($reisgegevens, 'year'), SORT_DESC,
+                array_column($reisgegevens, 'month'),      SORT_DESC,
+                $reisgegevens);
+        foreach ($reisgegevens as $key => $value) {
+            
+            if($value["month"]==$tempmonth&&$value["year"]==$tempyear){
+                $tempArray[$counter-1]["compensatie"]+=$value["compensatie"];
+                $tempArray[$counter-1]["afstand"]+=$value["afstand"];
+               if($tempvervoersmiddel!=$value["vervoersmiddel"]){
+                    $tempArray[$counter-1]["vervoersmiddel"].=", ".$value["vervoersmiddel"];
+               }
+                $tempvervoersmiddel=$value["vervoersmiddel"];
+            }else{
+                $tempArray[$counter]=$value;
+                $tempmonth=$value["month"];
+                $tempyear=$value["year"];
+                $tempvervoersmiddel=$value["vervoersmiddel"];
+                $counter++;
+            }
+        }
+        array_multisort(
+            array_column($tempArray, 'year'), SORT_DESC,
+                array_column($tempArray, 'month'),      SORT_DESC,
+                array_column($tempArray, 'werknemerId'), SORT_DESC,
+                $tempArray);
+            // foreach ($tempArray as $key => $value) {
+            //     echo 'the key is '.$key.'<br>';
+            //     #$tempArray=array();
+            //     foreach ($value as $key2 => $value2){
+            //         echo 'the key is '.$key2.' en ';
+            //         echo 'the value is '.$value2. "<br>";
+            //         #$tempArray+=[$key2=> $value2];
+            //     }
+            //     #$reisgegevens2+=[$key=>$tempArray];
+            // }
+            
+        $form = $this->createForm(WeergaveZoekerType::class);
+        $form->handleRequest($request);
+        return $this->render('weergave_reisgegevens/index.html.twig', [
+            'reisgegevens' => $tempArray,
             'makeForm'=>$form->createView()
         ]);
     }
