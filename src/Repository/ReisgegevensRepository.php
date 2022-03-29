@@ -100,13 +100,48 @@ class ReisgegevensRepository extends ServiceEntityRepository
         else 0 end)
         as compensatie")
         ->leftJoin("q.werknemer_id",'p')->addSelect('p.id')
-        ->groupBy('year, month, q.vervoersmiddel')
+        //->groupBy('year, month, q.vervoersmiddel')
+        ->GroupBy('year')
+        ->OrderBy('year', 'DESC')
+        ->addGroupBy('month')
+        ->addOrderBy('month', 'DESC')
+        ->addGroupBy('q.vervoersmiddel')
         ->where("q.werknemer_id=$id ")
         ->getQuery();
 
         $result=$query->getResult();
         return $result;
     }
+
+
+
+
+    public function groupByDatumAll(){
+
+        $query = $this->createQueryBuilder('q')
+        ->select(" p.email as werknemerId, q.vervoersmiddel, month(q.datum) as month, 
+        year(q.datum) as year, sum(q.afstand) as afstand,
+        sum(case when q.vervoersmiddel='auto' then (q.afstand*0.1)
+        when q.vervoersmiddel!='fiets' AND q.vervoersmiddel!='auto' then (q.afstand*0.25)
+        when q.afstand>5 AND q.vervoersmiddel='fiets' then (q.afstand*1.0)
+        when q.afstand<=5 AND q.vervoersmiddel='fiets' then (q.afstand*0.5)
+        else 0 end)
+        as compensatie")
+        ->leftJoin("q.werknemer_id",'p')->addSelect('p.id')
+        ->groupBy('q.werknemer_id')
+        ->orderBy('q.werknemer_id')
+        ->addGroupBy('year')
+        ->addOrderBy('year', 'DESC')
+        ->addGroupBy('month')
+        ->addOrderBy('month', 'DESC')
+        ->addGroupBy('q.vervoersmiddel')
+        ->getQuery();
+
+        $result=$query->getResult();
+        return $result;
+    }
+
+
 
 
 

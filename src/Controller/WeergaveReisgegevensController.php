@@ -86,6 +86,7 @@ class WeergaveReisgegevensController extends AbstractController
         $user = $this->getUser();
         $userId=$user->getId();
         $reisgegevens = $rg->groupByDatum($userId);
+        //$reisgegevens = $rg->groupByDatumAll();
         return $this->render('weergave_reisgegevens/index.html.twig', [
             'reisgegevens' => $reisgegevens
         ]);
