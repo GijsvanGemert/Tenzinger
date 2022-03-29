@@ -176,6 +176,7 @@ require __DIR__.'/ContainerVHJgJOH/get_ServiceLocator_3on9uHLService.php';
 require __DIR__.'/ContainerVHJgJOH/get_ServiceLocator_2dc0eaXService.php';
 
 
+
 $classes = [];
 $classes[] = 'Symfony\Bundle\FrameworkBundle\FrameworkBundle';
 $classes[] = 'Symfony\Bundle\TwigBundle\TwigBundle';
@@ -498,6 +499,7 @@ $classes[] = 'Symfony\Component\Serializer\NameConverter\MetadataAwareNameConver
 $classes[] = 'Symfony\Component\Serializer\Normalizer\DateTimeZoneNormalizer';
 $classes[] = 'Symfony\Component\Serializer\Normalizer\DateIntervalNormalizer';
 $classes[] = 'Symfony\Component\Serializer\Normalizer\FormErrorNormalizer';
+$classes[] = 'Symfony\Component\Serializer\Normalizer\BackedEnumNormalizer';
 $classes[] = 'Symfony\Component\Serializer\Normalizer\DataUriNormalizer';
 $classes[] = 'Symfony\Component\Serializer\Normalizer\ArrayDenormalizer';
 $classes[] = 'Symfony\Component\Serializer\Normalizer\ObjectNormalizer';

@@ -23,8 +23,10 @@ return [
     'app_logout' => [[], ['_controller' => 'App\\Controller\\LoginController::logout'], [], [['text', '/logout']], [], [], []],
     'app_registration' => [[], ['_controller' => 'App\\Controller\\RegistrationController::reg'], [], [['text', '/registration']], [], [], []],
     'app_weergave_reisgegevens' => [[], ['_controller' => 'App\\Controller\\WeergaveReisgegevensController::index'], [], [['text', '/weergave']], [], [], []],
+
     'app_weergave_reisgegevens_groupbyvervoer' => [[], ['_controller' => 'App\\Controller\\WeergaveReisgegevensController::groupbyvervoer'], [], [['text', '/weergave/groupbyvervoer']], [], [], []],
     'app_weergave_reisgegevens_groupbydatum' => [[], ['_controller' => 'App\\Controller\\WeergaveReisgegevensController::groupbydatum'], [], [['text', '/weergave/groupbydatum']], [], [], []],
+
     'app_download_reisgegevens' => [[], ['_controller' => 'App\\Controller\\WeergaveReisgegevensController::exportcsv'], [], [['text', '/weergave/download']], [], [], []],
     'app_welcome' => [[], ['_controller' => 'App\\Controller\\WelcomeController::index'], [], [['text', '/welcome']], [], [], []],
 ];

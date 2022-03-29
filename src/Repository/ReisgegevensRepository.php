@@ -165,16 +165,6 @@ class ReisgegevensRepository extends ServiceEntityRepository
     }
 
 
-
-
-
-
-
-
-
-
-
-    /*
     public function groupByID(){
 
         $query = $this->createQueryBuilder('q')
@@ -182,6 +172,7 @@ class ReisgegevensRepository extends ServiceEntityRepository
             ->leftJoin("q.werknemer_id",'p')->addSelect('p.id')
             ->groupBy('q.werknemer_id,q.vervoersmiddel, year, month')
             ->where("q.vervoersmiddel='auto'")
+            ->orderBy('q.werknemer_id, year, month, q.vervoersmiddel')
             ->getQuery();
 
         $query2 = $this->createQueryBuilder('q')
@@ -189,6 +180,7 @@ class ReisgegevensRepository extends ServiceEntityRepository
             ->leftJoin("q.werknemer_id",'p')->addSelect('p.id')
             ->groupBy('q.werknemer_id,q.vervoersmiddel, year, month')
             ->where("q.vervoersmiddel!='fiets' AND q.vervoersmiddel!='auto' ")
+            ->orderBy('q.werknemer_id, year, month, q.vervoersmiddel')
             ->getQuery();
 
         $query3 = $this->createQueryBuilder('q')
@@ -196,12 +188,14 @@ class ReisgegevensRepository extends ServiceEntityRepository
             ->leftJoin("q.werknemer_id",'p')->addSelect('p.id')
             ->groupBy('q.werknemer_id,q.vervoersmiddel, year, month')
             ->where("q.afstand>5 AND q.vervoersmiddel='fiets'")
+            ->orderBy('q.werknemer_id, year, month, q.vervoersmiddel')
             ->getQuery();
         $query4 = $this->createQueryBuilder('q')
             ->select('p.email as werknemerId,  q.vervoersmiddel,month(q.datum) as month,year(q.datum) as year, sum(q.afstand) as afstand, sum(q.afstand*0.5) as compensatie')
             ->leftJoin("q.werknemer_id",'p')->addSelect('p.id')
             ->groupBy('q.werknemer_id,q.vervoersmiddel,year, month')
             ->where("q.afstand<=5 AND q.vervoersmiddel='fiets'")
+            ->orderBy('q.werknemer_id, year, month, q.vervoersmiddel')
             ->getQuery();
         $result1=$query->getResult();
         $result2=$query2->getResult();
@@ -210,7 +204,7 @@ class ReisgegevensRepository extends ServiceEntityRepository
     return array_merge($result1,$result2,$result3,$result4);
 
     }
-    */
+
 
 
 

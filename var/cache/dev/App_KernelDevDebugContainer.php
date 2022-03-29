@@ -8,10 +8,12 @@ if (\class_exists(\ContainerOC90seh\App_KernelDevDebugContainer::class, false)) 
     touch(__DIR__.'/ContainerVHJgJOH.legacy');
 
 
+
     return;
 }
 
 if (!\class_exists(App_KernelDevDebugContainer::class, false)) {
+
     \class_alias(\ContainerVHJgJOH\App_KernelDevDebugContainer::class, App_KernelDevDebugContainer::class, false);
 }
 
@@ -20,3 +22,4 @@ return new \ContainerVHJgJOH\App_KernelDevDebugContainer([
     'container.build_id' => '08bc2f40',
     'container.build_time' => 1648543382,
 ], __DIR__.\DIRECTORY_SEPARATOR.'ContainerVHJgJOH');
+

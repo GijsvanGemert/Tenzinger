@@ -23,8 +23,10 @@ return [
         '/logout' => [[['_route' => 'app_logout', '_controller' => 'App\\Controller\\LoginController::logout'], null, null, null, false, false, null]],
         '/registration' => [[['_route' => 'app_registration', '_controller' => 'App\\Controller\\RegistrationController::reg'], null, null, null, false, false, null]],
         '/weergave' => [[['_route' => 'app_weergave_reisgegevens', '_controller' => 'App\\Controller\\WeergaveReisgegevensController::index'], null, null, null, false, false, null]],
+
         '/weergave/groupbyvervoer' => [[['_route' => 'app_weergave_reisgegevens_groupbyvervoer', '_controller' => 'App\\Controller\\WeergaveReisgegevensController::groupbyvervoer'], null, null, null, false, false, null]],
         '/weergave/groupbydatum' => [[['_route' => 'app_weergave_reisgegevens_groupbydatum', '_controller' => 'App\\Controller\\WeergaveReisgegevensController::groupbydatum'], null, null, null, false, false, null]],
+
         '/weergave/download' => [[['_route' => 'app_download_reisgegevens', '_controller' => 'App\\Controller\\WeergaveReisgegevensController::exportcsv'], null, null, null, false, false, null]],
         '/welcome' => [[['_route' => 'app_welcome', '_controller' => 'App\\Controller\\WelcomeController::index'], null, null, null, false, false, null]],
     ],
