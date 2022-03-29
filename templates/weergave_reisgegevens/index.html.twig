@@ -7,7 +7,7 @@
 </div>
 {% endfor %}
 <h2>Reisgegevens</h2>
-{#{{form(makeForm)}}#}
+{# {{form(makeForm)}} #}
 <table class="table table-striped">
 
     <thead>
@@ -66,6 +66,18 @@
 {% if reisgegevens[0].month is defined %}
 <a href="/tenzinger/public/index.php/weergave/download" class="button">Download data</a> 
 {% else %}
-<a href="/tenzinger/public/index.php/weergave/groupby" class="button">Group Data</a> 
+
+<!--
+<a href="/tenzinger/public/index.php/weergave/groupbyvervoer" class="button">Vervoersmiddel</a>
+<a href="/tenzinger/public/index.php/weergave/groupbydatum" class="button">Datum</a> 
+-->
+
+<label for="pet-select">Groepeer reisgegevens op:</label>
+<select name="forma" onchange="location = this.value;">
+<option value="">--Maak hier uw keuze--</option>
+ <option value="/tenzinger/public/index.php/weergave/groupbyvervoer">Vervoersmiddel</option>
+ <option value="/tenzinger/public/index.php/weergave/groupbydatum">Datum</option>
+</select>
+
  {% endif %}
 {% endblock %}

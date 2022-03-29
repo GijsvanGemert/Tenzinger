@@ -92,10 +92,8 @@ class UserCrudController extends AbstractCrudController
     }
 
     # DEZE FUNCTIE AANPASSEN
-    public function exportcsv3(ReisgegevensRepository $rg,  Request $request){
-        $user = $this->getUser();
-        $userId=$user->getId();
-        $records= $rg->groupByVervoersmiddel($userId);
+    public function exportcsv3(UserRepository $ur,  Request $request){
+        $records= $ur->FindAll();
         $encoders = [new CsvEncoder()];
         $normalizers = array(new ObjectNormalizer());
         $serializer = new Serializer($normalizers, $encoders);
