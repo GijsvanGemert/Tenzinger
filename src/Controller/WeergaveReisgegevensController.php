@@ -23,7 +23,6 @@ class WeergaveReisgegevensController extends AbstractController
     public function index(ReisgegevensRepository $rg, Request $request): Response
     {
         $user = $this->getUser();
-        //echo $user;
         $reisgegevens = $rg->findBy(['werknemer_id' => $user]);
         return $this->render('weergave_reisgegevens/index.html.twig', [
             'reisgegevens' => $reisgegevens
@@ -67,19 +66,33 @@ class WeergaveReisgegevensController extends AbstractController
 
     */
     
-    #[Route('/weergave/groupby', name: 'app_weergave_reisgegevens_groupby')]
-    public function groupbyid(ReisgegevensRepository $rg,  Request $request): Response
+    #[Route('/weergave/groupbyvervoer', name: 'app_weergave_reisgegevens_groupbyvervoer')]
+    public function groupbyvervoer(ReisgegevensRepository $rg,  Request $request): Response
     {
         $user = $this->getUser();
         $userId=$user->getId();
         $reisgegevens = $rg->groupByVervoersmiddel($userId);
-        $form = $this->createForm(WeergaveZoekerType::class);
-        $form->handleRequest($request);
+        //$reisgegevens = $rg->groupByDatum($userId);
+        //$reisgegevens = $rg->orderByCompensatie($userId);
         return $this->render('weergave_reisgegevens/index.html.twig', [
-            'reisgegevens' => $reisgegevens,
-            'makeForm'=>$form->createView()
+            'reisgegevens' => $reisgegevens
         ]);
     }
+
+
+    #[Route('/weergave/groupbydatum', name: 'app_weergave_reisgegevens_groupbydatum')]
+    public function groupbydatum(ReisgegevensRepository $rg,  Request $request): Response
+    {
+        $user = $this->getUser();
+        $userId=$user->getId();
+        $reisgegevens = $rg->groupByDatum($userId);
+        //$reisgegevens = $rg->groupByDatumAll();
+        return $this->render('weergave_reisgegevens/index.html.twig', [
+            'reisgegevens' => $reisgegevens
+        ]);
+    }
+
+
     
 
     #[Route('/weergave/download', name: 'app_download_reisgegevens')]

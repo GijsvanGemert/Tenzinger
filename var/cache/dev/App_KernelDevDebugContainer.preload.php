@@ -9,6 +9,7 @@ if (in_array(PHP_SAPI, ['cli', 'phpdbg'], true)) {
     return;
 }
 
+
 require dirname(__DIR__, 3).'/vendor/autoload.php';
 (require __DIR__.'/App_KernelDevDebugContainer.php')->set(\ContainerVHJgJOH\App_KernelDevDebugContainer::class, null);
 require __DIR__.'/ContainerVHJgJOH/EntityManager_9a5be93.php';
@@ -173,6 +174,7 @@ require __DIR__.'/ContainerVHJgJOH/get_ServiceLocator_CKlWSjaService.php';
 require __DIR__.'/ContainerVHJgJOH/get_ServiceLocator_4C0Bh8jService.php';
 require __DIR__.'/ContainerVHJgJOH/get_ServiceLocator_3on9uHLService.php';
 require __DIR__.'/ContainerVHJgJOH/get_ServiceLocator_2dc0eaXService.php';
+
 
 $classes = [];
 $classes[] = 'Symfony\Bundle\FrameworkBundle\FrameworkBundle';

@@ -146,10 +146,14 @@ return [[
 '[C]App%5CController%5CAdmin%5CUserCrudController%23getEntityFqcn' => 1,
 'App%5CController%5CDataInputController' => 0,
 '[C]App%5CController%5CDataInputController' => 1,
+'App%5CController%5CDataInputController%23__construct' => 0,
+'[C]App%5CController%5CDataInputController%23__construct' => 1,
 'App%5CController%5CDataInputController%23index' => 0,
 '[C]App%5CController%5CDataInputController%23index' => 1,
 'App%5CController%5CDataInputController%23invoerReisgegevens' => 0,
 '[C]App%5CController%5CDataInputController%23invoerReisgegevens' => 1,
+'App%5CController%5CDataInputController%24token' => 0,
+'[C]App%5CController%5CDataInputController%24token' => 1,
 'App%5CController%5CHomeController' => 0,
 '[C]App%5CController%5CHomeController' => 1,
 'App%5CController%5CHomeController%23index' => 0,
@@ -166,14 +170,12 @@ return [[
 '[C]App%5CController%5CRegistrationController%23reg' => 1,
 'App%5CController%5CWeergaveReisgegevensController' => 0,
 '[C]App%5CController%5CWeergaveReisgegevensController' => 1,
-'App%5CController%5CWeergaveReisgegevensController%23__construct' => 0,
-'[C]App%5CController%5CWeergaveReisgegevensController%23__construct' => 1,
 'App%5CController%5CWeergaveReisgegevensController%23index' => 0,
 '[C]App%5CController%5CWeergaveReisgegevensController%23index' => 1,
+'App%5CController%5CWeergaveReisgegevensController%23groupbyid' => 0,
+'[C]App%5CController%5CWeergaveReisgegevensController%23groupbyid' => 1,
 'App%5CController%5CWeergaveReisgegevensController%23exportcsv' => 0,
 '[C]App%5CController%5CWeergaveReisgegevensController%23exportcsv' => 1,
-'App%5CController%5CWeergaveReisgegevensController%24security' => 0,
-'[C]App%5CController%5CWeergaveReisgegevensController%24security' => 1,
 'App%5CController%5CWelcomeController' => 0,
 '[C]App%5CController%5CWelcomeController' => 1,
 'App%5CController%5CWelcomeController%23index' => 0,
@@ -902,5 +904,6 @@ return [[
 ], [
 
 0 => [],
+
 1 => 1648112590,
 ]];

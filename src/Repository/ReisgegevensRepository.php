@@ -45,6 +45,17 @@ class ReisgegevensRepository extends ServiceEntityRepository
             $this->_em->flush();
         }
     }
+    public function MaxDistanceBiked($dateNumber,$year){
+        $query = $this->createQueryBuilder('q')
+            ->select(' month(q.datum) as month, year(q.datum) as year, sum(q.afstand) as afstand')
+            ->groupBy('q.vervoersmiddel, year, month')
+            ->where("q.vervoersmiddel='fiets' AND month(q.datum)  = $dateNumber AND year(q.datum) = $year")
+            ->orderBy("afstand")
+            ->setMaxResults(1)
+            ->getQuery();
+        return $query->getResult();
+    }
+
 
     public function groupByVervoersmiddel($id){
 
@@ -68,18 +79,77 @@ class ReisgegevensRepository extends ServiceEntityRepository
             ->groupBy('q.vervoersmiddel, year, month')
             ->where("q.afstand>5 AND q.vervoersmiddel='fiets' AND q.werknemer_id=$id ")
             ->getQuery();
+
         $query4 = $this->createQueryBuilder('q')
             ->select('p.email as werknemerId,  q.vervoersmiddel,month(q.datum) as month,year(q.datum) as year, sum(q.afstand) as afstand, sum(q.afstand*0.5) as compensatie')
             ->leftJoin("q.werknemer_id",'p')->addSelect('p.id')
             ->groupBy('q.vervoersmiddel, year, month')
             ->where("q.afstand<=5 AND q.vervoersmiddel='fiets' AND q.werknemer_id=$id ")
             ->getQuery();
+
         $result1=$query->getResult();
         $result2=$query2->getResult();
         $result3=$query3->getResult();
         $result4=$query4->getResult();
-    return array_merge($result1, $result2, $result3, $result4);
 
+    return array_merge($result1, $result2, $result3, $result4);
+    }
+
+
+
+
+
+    public function groupByDatum($id){
+
+        $query = $this->createQueryBuilder('q')
+        ->select(" p.email as werknemerId, q.vervoersmiddel, month(q.datum) as month, 
+        year(q.datum) as year, sum(q.afstand) as afstand,
+        sum(case when q.vervoersmiddel='auto' then (q.afstand*0.1)
+        when q.vervoersmiddel!='fiets' AND q.vervoersmiddel!='auto' then (q.afstand*0.25)
+        when q.afstand>5 AND q.vervoersmiddel='fiets' then (q.afstand*1.0)
+        when q.afstand<=5 AND q.vervoersmiddel='fiets' then (q.afstand*0.5)
+        else 0 end)
+        as compensatie")
+        ->leftJoin("q.werknemer_id",'p')->addSelect('p.id')
+        //->groupBy('year, month, q.vervoersmiddel')
+        ->GroupBy('year')
+        ->OrderBy('year', 'DESC')
+        ->addGroupBy('month')
+        ->addOrderBy('month', 'DESC')
+        ->addGroupBy('q.vervoersmiddel')
+        ->where("q.werknemer_id=$id ")
+        ->getQuery();
+
+        $result=$query->getResult();
+        return $result;
+    }
+
+
+
+
+    public function groupByDatumAll(){
+
+        $query = $this->createQueryBuilder('q')
+        ->select(" p.email as werknemerId, q.vervoersmiddel, month(q.datum) as month, 
+        year(q.datum) as year, sum(q.afstand) as afstand,
+        sum(case when q.vervoersmiddel='auto' then (q.afstand*0.1)
+        when q.vervoersmiddel!='fiets' AND q.vervoersmiddel!='auto' then (q.afstand*0.25)
+        when q.afstand>5 AND q.vervoersmiddel='fiets' then (q.afstand*1.0)
+        when q.afstand<=5 AND q.vervoersmiddel='fiets' then (q.afstand*0.5)
+        else 0 end)
+        as compensatie")
+        ->leftJoin("q.werknemer_id",'p')->addSelect('p.id')
+        ->groupBy('q.werknemer_id')
+        ->orderBy('q.werknemer_id')
+        ->addGroupBy('year')
+        ->addOrderBy('year', 'DESC')
+        ->addGroupBy('month')
+        ->addOrderBy('month', 'DESC')
+        ->addGroupBy('q.vervoersmiddel')
+        ->getQuery();
+
+        $result=$query->getResult();
+        return $result;
     }
 
     public function FindAll2(){
@@ -93,6 +163,16 @@ class ReisgegevensRepository extends ServiceEntityRepository
         return $query->getResult();
 
     }
+
+
+
+
+
+
+
+
+
+
 
     /*
     public function groupByID(){
@@ -130,7 +210,7 @@ class ReisgegevensRepository extends ServiceEntityRepository
     return array_merge($result1,$result2,$result3,$result4);
 
     }
-*/
+    */
 
 
 
