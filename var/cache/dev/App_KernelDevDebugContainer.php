@@ -7,6 +7,7 @@ if (\class_exists(\ContainerDWjc3mP\App_KernelDevDebugContainer::class, false)) 
 } elseif (!include __DIR__.'/ContainerDWjc3mP/App_KernelDevDebugContainer.php') {
     touch(__DIR__.'/ContainerDWjc3mP.legacy');
 
+
     return;
 }
 
@@ -14,8 +15,9 @@ if (!\class_exists(App_KernelDevDebugContainer::class, false)) {
     \class_alias(\ContainerDWjc3mP\App_KernelDevDebugContainer::class, App_KernelDevDebugContainer::class, false);
 }
 
-return new \ContainerDWjc3mP\App_KernelDevDebugContainer([
-    'container.build_hash' => 'DWjc3mP',
-    'container.build_id' => '6e87cc0e',
-    'container.build_time' => 1648578333,
-], __DIR__.\DIRECTORY_SEPARATOR.'ContainerDWjc3mP');
+return new \ContainerVHJgJOH\App_KernelDevDebugContainer([
+    'container.build_hash' => 'VHJgJOH',
+    'container.build_id' => '08bc2f40',
+    'container.build_time' => 1648543382,
+], __DIR__.\DIRECTORY_SEPARATOR.'ContainerVHJgJOH');
+
