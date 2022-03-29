@@ -55,10 +55,11 @@ class ReisgegevensCrudController extends AbstractCrudController
     public function configureFilters(Filters $filters): Filters
     {
         return parent::configureFilters($filters)
+            ->add('afstand')
             ->add('vervoersmiddel')
-            ->add('datum')
             ->add(BooleanFilter::new('heen'))
-            ->add('werknemer_id');
+            ->add('werknemer_id')
+            ->add('datum');
     }
 
     public function configureActions(Actions $actions): Actions
@@ -72,7 +73,6 @@ class ReisgegevensCrudController extends AbstractCrudController
         return $actions->add(Crud::PAGE_INDEX, $export);
     }
 
-    # DEZE FUNCTIE AANPASSEN
     public function exportcsv2(ReisgegevensRepository $rg,  Request $request){
         $reisgegevens = $rg->FindAll2();
         $encoders = [new CsvEncoder()];

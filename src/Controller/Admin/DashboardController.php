@@ -40,6 +40,5 @@ class DashboardController extends AbstractDashboardController
 
         yield MenuItem::section('Gegevens');
         yield MenuItem::linkToCrud('Reisgegevens', 'fas fa-duotone fa-car', Reisgegevens::class);
-        yield MenuItem::linkToCrud('Compensatie', 'fas fa-solid fa-coins', Compensatie::class);
     }
 }
