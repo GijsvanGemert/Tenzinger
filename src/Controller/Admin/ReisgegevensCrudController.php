@@ -61,7 +61,6 @@ class ReisgegevensCrudController extends AbstractCrudController
             ->add('werknemer_id')
             ->add('datum');
     }
-
     public function configureActions(Actions $actions): Actions
     {
         $export = Action::new('exportcsv2', 'Export')
@@ -70,7 +69,8 @@ class ReisgegevensCrudController extends AbstractCrudController
             ->setCssClass('btn')
             ->createAsGlobalAction();
 
-        return $actions->add(Crud::PAGE_INDEX, $export);
+        return $actions
+            ->add(Crud::PAGE_INDEX, $export);
     }
 
     public function exportcsv2(ReisgegevensRepository $rg,  Request $request){

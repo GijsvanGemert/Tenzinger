@@ -80,18 +80,17 @@ class UserCrudController extends AbstractCrudController
     }
     */
 
+
     public function configureActions(Actions $actions): Actions
     {
-        $export = Action::new('exportcsv3', 'Export')
-            ->setIcon('fa fa-download')
+        $export = Action::new('exportcsv3', 'Export', 'fa fa-download')
             ->linkToCrudAction('exportcsv3')
-            ->setCssClass('btn')
             ->createAsGlobalAction();
 
-        return $actions->add(Crud::PAGE_INDEX, $export);
+        return $actions
+            ->add(Crud::PAGE_INDEX, $export);
     }
 
-    # DEZE FUNCTIE AANPASSEN
     public function exportcsv3(UserRepository $ur,  Request $request){
         $records= $ur->FindAll();
         $encoders = [new CsvEncoder()];
