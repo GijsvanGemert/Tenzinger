@@ -8,11 +8,11 @@ if (\class_exists(\ContainerOC90seh\App_KernelDevDebugContainer::class, false)) 
 } elseif (!include __DIR__.'/ContainerOC90seh/App_KernelDevDebugContainer.php') {
     touch(__DIR__.'/ContainerOC90seh.legacy');
 
+
     return;
 }
 
 if (!\class_exists(App_KernelDevDebugContainer::class, false)) {
-
     \class_alias(\ContainerOC90seh\App_KernelDevDebugContainer::class, App_KernelDevDebugContainer::class, false);
 }
 
@@ -21,4 +21,3 @@ return new \ContainerOC90seh\App_KernelDevDebugContainer([
     'container.build_id' => 'bb561355',
     'container.build_time' => 1648467553,
 ], __DIR__.\DIRECTORY_SEPARATOR.'ContainerOC90seh');
-
