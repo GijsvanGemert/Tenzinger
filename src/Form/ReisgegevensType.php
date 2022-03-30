@@ -41,7 +41,7 @@ class ReisgegevensType extends AbstractType
                 ],
             ])
             ->add('datum',DateType::class, [
-                'months' => range(date('m', strtotime("-1 month")), date('m')),
+                'months' => range(date('m', strtotime("-2 month")), date('m')),
                 'years' => range(date('y') , date('y')),
                 'required'=>'true',
                 'placeholder' => [

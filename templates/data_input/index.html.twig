@@ -6,11 +6,16 @@
 <main role="main">
 
       <!-- Main jumbotron for a primary marketing message or call to action -->
-      <div class="cropped">
-        <img src="https://ipvdelft.nl/wp-content/uploads/2018/01/fietsbelevenis-tussen-de-bomen-ontwerp-2_pad-verdiept_ipvDelft-1500x630.jpg" alt="Fietsen bos">
-      </div>
       <div class="jumbotron">
         <div class="container">
+          {% for message in app.flashes('success') %}
+          <div class="alert alert-success">
+            <h3>{{ message }}<h3>
+          </div>
+          {% endfor %}
+          <div class="cropped">
+            <img src="https://ipvdelft.nl/wp-content/uploads/2018/01/fietsbelevenis-tussen-de-bomen-ontwerp-2_pad-verdiept_ipvDelft-1500x630.jpg" alt="Fietsen bos">
+          </div>
           <h1 class="display-3">Welkom</h1>
           <p>Doormiddel van deze handige app kun je nu je reiskosten gemakkelijk declareren.</p>
           <p><a class="btn btn-primary btn-lg" href="#" role="button">Meer info »</a></p>

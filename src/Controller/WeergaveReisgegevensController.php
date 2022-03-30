@@ -88,7 +88,7 @@ class WeergaveReisgegevensController extends AbstractController
         $userId=$user->getId();
         $reisgegevens = $rg->groupByDatum($userId);
         //$reisgegevens = $rg->groupByDatumAll();
-        return $this->render('weergave_reisgegevens/index.html.twig', [
+        return $this->render('weergave_reisgegevens/index2.html.twig', [
             'reisgegevens' => $reisgegevens
         ]);
     }
@@ -154,6 +154,30 @@ class WeergaveReisgegevensController extends AbstractController
         $user = $this->getUser();
         $userId=$user->getId();
         $records= $rg->groupByVervoersmiddel($userId);
+        $encoders = [new CsvEncoder()];
+        $normalizers = array(new ObjectNormalizer());
+        $serializer = new Serializer($normalizers, $encoders);
+        $records= (array) $records;
+        $csvContent = $serializer->serialize($records, 'csv');
+      
+        $response = new Response($csvContent);
+        $response->headers->set('Content-Encoding', 'UTF-8');
+        $response->headers->set('Content-Type', 'text/csv; charset=UTF-8');
+        $response->headers->set('Content-Disposition', 'attachment; filename=sample.csv');
+
+        $response->sendHeaders();
+        //$response->sendContent();
+        return $response;
+
+    // do something with the file
+        
+    }
+
+    #[Route('/weergave/download2', name: 'app_download2_reisgegevens')]
+    public function exportcsv2(ReisgegevensRepository $rg,  Request $request){
+        $user = $this->getUser();
+        $userId=$user->getId();
+        $records= $rg->groupByDatum($userId);
         $encoders = [new CsvEncoder()];
         $normalizers = array(new ObjectNormalizer());
         $serializer = new Serializer($normalizers, $encoders);
