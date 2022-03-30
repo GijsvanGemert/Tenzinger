@@ -22,7 +22,7 @@ class DataInputController extends AbstractController
     $this->token = $token;
     }
 
-    #[Route('/', name: 'index')]
+    #[Route('/', name: 'app_home')]
     public function index(ReisgegevensRepository $rg): Response
     {
 

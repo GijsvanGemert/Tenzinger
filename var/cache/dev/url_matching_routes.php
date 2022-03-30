@@ -14,20 +14,18 @@ return [
         '/_profiler/phpinfo' => [[['_route' => '_profiler_phpinfo', '_controller' => 'web_profiler.controller.profiler::phpinfoAction'], null, null, null, false, false, null]],
         '/_profiler/open' => [[['_route' => '_profiler_open_file', '_controller' => 'web_profiler.controller.profiler::openAction'], null, null, null, false, false, null]],
         '/admin' => [[['_route' => 'admin', '_controller' => 'App\\Controller\\Admin\\DashboardController::index'], null, null, null, false, false, null]],
-        '/' => [
-            [['_route' => 'index', '_controller' => 'App\\Controller\\DataInputController::index'], null, null, null, false, false, null],
-            [['_route' => 'app_home', '_controller' => 'App\\Controller\\HomeController::index'], null, null, null, false, false, null],
-        ],
+        '/' => [[['_route' => 'app_home', '_controller' => 'App\\Controller\\DataInputController::index'], null, null, null, false, false, null]],
         '/data_input' => [[['_route' => 'app_data_input', '_controller' => 'App\\Controller\\DataInputController::invoerReisgegevens'], null, null, null, false, false, null]],
+        '/hh' => [[['_route' => 'app_old_home', '_controller' => 'App\\Controller\\HomeController::index'], null, null, null, false, false, null]],
         '/login' => [[['_route' => 'app_login', '_controller' => 'App\\Controller\\LoginController::index'], null, null, null, false, false, null]],
         '/logout' => [[['_route' => 'app_logout', '_controller' => 'App\\Controller\\LoginController::logout'], null, null, null, false, false, null]],
         '/registration' => [[['_route' => 'app_registration', '_controller' => 'App\\Controller\\RegistrationController::reg'], null, null, null, false, false, null]],
         '/weergave' => [[['_route' => 'app_weergave_reisgegevens', '_controller' => 'App\\Controller\\WeergaveReisgegevensController::index'], null, null, null, false, false, null]],
-
         '/weergave/groupbyvervoer' => [[['_route' => 'app_weergave_reisgegevens_groupbyvervoer', '_controller' => 'App\\Controller\\WeergaveReisgegevensController::groupbyvervoer'], null, null, null, false, false, null]],
         '/weergave/groupbydatum' => [[['_route' => 'app_weergave_reisgegevens_groupbydatum', '_controller' => 'App\\Controller\\WeergaveReisgegevensController::groupbydatum'], null, null, null, false, false, null]],
-
+        '/weergave/groupby2' => [[['_route' => 'app_weergave_reisgegevens_groupby2', '_controller' => 'App\\Controller\\WeergaveReisgegevensController::groupbyid2'], null, null, null, false, false, null]],
         '/weergave/download' => [[['_route' => 'app_download_reisgegevens', '_controller' => 'App\\Controller\\WeergaveReisgegevensController::exportcsv'], null, null, null, false, false, null]],
+        '/weergave/download2' => [[['_route' => 'app_download2_reisgegevens', '_controller' => 'App\\Controller\\WeergaveReisgegevensController::exportcsv2'], null, null, null, false, false, null]],
         '/welcome' => [[['_route' => 'app_welcome', '_controller' => 'App\\Controller\\WelcomeController::index'], null, null, null, false, false, null]],
     ],
     [ // $regexpList

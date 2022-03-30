@@ -16,17 +16,17 @@ return [
     '_profiler_exception' => [['token'], ['_controller' => 'web_profiler.controller.exception_panel::body'], [], [['text', '/exception'], ['variable', '/', '[^/]++', 'token', true], ['text', '/_profiler']], [], [], []],
     '_profiler_exception_css' => [['token'], ['_controller' => 'web_profiler.controller.exception_panel::stylesheet'], [], [['text', '/exception.css'], ['variable', '/', '[^/]++', 'token', true], ['text', '/_profiler']], [], [], []],
     'admin' => [[], ['_controller' => 'App\\Controller\\Admin\\DashboardController::index'], [], [['text', '/admin']], [], [], []],
-    'index' => [[], ['_controller' => 'App\\Controller\\DataInputController::index'], [], [['text', '/']], [], [], []],
+    'app_home' => [[], ['_controller' => 'App\\Controller\\DataInputController::index'], [], [['text', '/']], [], [], []],
     'app_data_input' => [[], ['_controller' => 'App\\Controller\\DataInputController::invoerReisgegevens'], [], [['text', '/data_input']], [], [], []],
-    'app_home' => [[], ['_controller' => 'App\\Controller\\HomeController::index'], [], [['text', '/']], [], [], []],
+    'app_old_home' => [[], ['_controller' => 'App\\Controller\\HomeController::index'], [], [['text', '/hh']], [], [], []],
     'app_login' => [[], ['_controller' => 'App\\Controller\\LoginController::index'], [], [['text', '/login']], [], [], []],
     'app_logout' => [[], ['_controller' => 'App\\Controller\\LoginController::logout'], [], [['text', '/logout']], [], [], []],
     'app_registration' => [[], ['_controller' => 'App\\Controller\\RegistrationController::reg'], [], [['text', '/registration']], [], [], []],
     'app_weergave_reisgegevens' => [[], ['_controller' => 'App\\Controller\\WeergaveReisgegevensController::index'], [], [['text', '/weergave']], [], [], []],
-
     'app_weergave_reisgegevens_groupbyvervoer' => [[], ['_controller' => 'App\\Controller\\WeergaveReisgegevensController::groupbyvervoer'], [], [['text', '/weergave/groupbyvervoer']], [], [], []],
     'app_weergave_reisgegevens_groupbydatum' => [[], ['_controller' => 'App\\Controller\\WeergaveReisgegevensController::groupbydatum'], [], [['text', '/weergave/groupbydatum']], [], [], []],
-
+    'app_weergave_reisgegevens_groupby2' => [[], ['_controller' => 'App\\Controller\\WeergaveReisgegevensController::groupbyid2'], [], [['text', '/weergave/groupby2']], [], [], []],
     'app_download_reisgegevens' => [[], ['_controller' => 'App\\Controller\\WeergaveReisgegevensController::exportcsv'], [], [['text', '/weergave/download']], [], [], []],
+    'app_download2_reisgegevens' => [[], ['_controller' => 'App\\Controller\\WeergaveReisgegevensController::exportcsv2'], [], [['text', '/weergave/download2']], [], [], []],
     'app_welcome' => [[], ['_controller' => 'App\\Controller\\WelcomeController::index'], [], [['text', '/welcome']], [], [], []],
 ];
